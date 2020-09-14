@@ -38,13 +38,13 @@ namespace Countries.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool modify = context.Countries.Any(x => x.CountryCode == c.NumericCode);
-                Country country;
+                bool modify = false;
 
-                if (modify)
+                Country country = context.Countries.FirstOrDefault(x => x.CountryCode == c.NumericCode);
+                if (country != null)
                 {
-                    var id = context.Countries.FirstOrDefault(x => x.CountryCode == c.NumericCode).Id;
-                    country = context.Countries.Find(id);
+                    country = context.Countries.Find(country.Id);
+                    modify = true;
                 }
                 else
                 {
@@ -56,33 +56,25 @@ namespace Countries.Controllers
                 country.Population = c.Population;
                 country.CountryCode = c.NumericCode;
 
-                if (context.Cities.Any(x => x.Name == c.Capital))
+                City city = context.Cities.FirstOrDefault(x => x.Name == c.Capital);
+                if (city == null)
                 {
-                    country.Capital = context.Cities.FirstOrDefault(x => x.Name == c.Capital);
-                }
-                else
-                {
-                    City city = new City
+                    city = new City
                     {
                         Name = c.Capital
                     };
-
-                    country.Capital = city;
                 }
+                country.Capital = city;
 
-                if (context.Regions.Any(x => x.Name == c.Region))
+                Region region = context.Regions.FirstOrDefault(x => x.Name == c.Region);
+                if (region == null)
                 {
-                    country.Region = context.Regions.FirstOrDefault(x => x.Name == c.Region);
-                }
-                else
-                {
-                    Region region = new Region
+                    region = new Region
                     {
                         Name = c.Region
                     };
-
-                    country.Region = region;
                 }
+                country.Region = region;
 
                 if (modify)
                 {
