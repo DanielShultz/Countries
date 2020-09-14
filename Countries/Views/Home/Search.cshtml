@@ -1,0 +1,82 @@
+﻿@model RESTCountries.Models.Country
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm("Search", "Home", FormMethod.Post))
+{
+<div>
+    @Html.HiddenFor(model => model.NumericCode)
+    @Html.HiddenFor(model => model.Area)
+    @Html.HiddenFor(model => model.Population)
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.Region)
+    @Html.HiddenFor(model => model.Capital)
+    <h4>Country</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumericCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumericCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Population)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Population)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Region)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Capital)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Capital)
+        </dd>
+
+    </dl>
+</div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+
+}
+<p>
+    @Html.ActionLink("All", "All") |
+    @Html.ActionLink("Index", "Index")
+</p>

@@ -1,0 +1,21 @@
+﻿@model RESTCountries.Models.Country
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    <h2>Search</h2>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <p>
+            @Html.Editor("countryName")
+        </p>
+        <p>
+            <input type="submit" value="Search" />
+        </p>
+    }
+        <p>
+            @Html.ActionLink("All","All")
+        </p>
+</div>
